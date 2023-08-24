@@ -4,6 +4,7 @@
 
 #ifndef _RINGBUFFER_H
 #define _RINGBUFFER_H
+#include <atomic>
 
 template <typename T>
 class RingBuffer
@@ -64,8 +65,8 @@ public:
 private:
     T* m_array;
     size_t m_arraySize;
-    uint32_t  m_readIndex;
-    uint32_t  m_writeIndex;
+    std::atomic<uint32_t>  m_readIndex;
+    std::atomic<uint32_t>  m_writeIndex;
 };
 
 #endif // _RINGBUFFER_H
