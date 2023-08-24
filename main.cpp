@@ -11,7 +11,7 @@ void testFunc(uint64_t taskId, void* data)
     do
     {
         auto currentTime = clock.now();
-        std::chrono::duration<double> elapsedTime = duration_cast<std::chrono::milliseconds>(currentTime - startTime);
+        auto elapsedTime = std::chrono::duration_cast<std::chrono::seconds>(currentTime - startTime);
         if(elapsedTime.count() > 5)
             break;
     } while(true);
@@ -37,7 +37,7 @@ int main() {
     pool.flush();
 
     auto endTime = clock.now();
-    std::chrono::duration<double> elapsedTime = duration_cast<std::chrono::milliseconds>(endTime - startTime);
+    auto elapsedTime = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - startTime);
     std::cout << "Running time = " << elapsedTime.count() << " ms." << std::endl;
 
     return 0;
