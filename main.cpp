@@ -2,6 +2,7 @@
 #include <chrono>
 #include <assert.h>
 #include "ThreadPool/ThreadPool.h"
+#include "RingBuffer/RingBuffer.h"
 
 void testFunc(uint64_t taskId, void* data)
 {
@@ -33,12 +34,10 @@ int main() {
     {
         pool.enqueue(&values[i], testFunc);
     }
-
     pool.flush();
 
     auto endTime = clock.now();
     std::chrono::duration<double> elapsedTime = duration_cast<std::chrono::milliseconds>(endTime - startTime);
-
     std::cout << "Running time = " << elapsedTime.count() << " ms." << std::endl;
 
     return 0;
